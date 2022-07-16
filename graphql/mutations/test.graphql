@@ -1,0 +1,5 @@
+mutation testMutation($name:String){
+  testMutation(name:$name){
+    name
+  }
+}
