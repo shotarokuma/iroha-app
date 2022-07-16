@@ -1,0 +1,36 @@
+version: '3.5'
+
+networks:
+  iroha-react-network:
+    name: iroha-react-network
+    attachable: true
+
+services:
+  iroha-react:
+    image: hyperledger/iroha:latest
+    container_name: iroha-react
+    depends_on:
+      - iroha-react-postgres
+    tty: true
+    environment:
+      - KEY=keys/node0
+    entrypoint:
+      - /opt/iroha_data/entrypoint.sh
+    networks:
+      - iroha-react-network
+    volumes:
+      - ./iroha:/opt/iroha_data
+    ports:
+      - 50051:50051
+
+  iroha-react-postgres:
+    image: postgres:latest
+    container_name: iroha-react-postgres
+    environment: 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
+    ports:
+      - 5432:5432
+    networks:
+      - iroha-react-network
+    restart: always
