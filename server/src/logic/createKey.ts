@@ -4,8 +4,8 @@ import { createKeyPair } from "ed25519.js";
 let publicKey = "";
 let privateKey = "";
 
-export const createKey = (account: string, domain: string): string[] => {
-  const KEY_DIR = "../keys/"
+export const createKey = (account: String, domain: String): String[] => {
+  const KEY_DIR = "./keys/"
   const keys = createKeyPair();
   const pub = keys.publicKey;
   const priv = keys.privateKey;
@@ -16,12 +16,12 @@ export const createKey = (account: string, domain: string): string[] => {
 
   for (let i = 0; i < 32; i++) {
     privateKey = privateKey + priv[i].toString(16).padStart(2, "0");
-  }
+  };
 
   fs.writeFile(
     KEY_DIR + account + "@" + domain + ".pub",
     publicKey,
-    function (err) {
+    (err)  => {
       if (err) {
         throw err;
       }
@@ -31,7 +31,7 @@ export const createKey = (account: string, domain: string): string[] => {
   fs.writeFile(
     KEY_DIR + account + "@" + domain + ".priv",
     privateKey,
-    function (err) {
+     (err)  => {
       if (err) {
         throw err;
       }
@@ -42,5 +42,3 @@ export const createKey = (account: string, domain: string): string[] => {
 
   return keyPair;
 };
-
-createKey("test", "japan");

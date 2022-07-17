@@ -1,6 +1,6 @@
 import { useTestQueryQuery } from '../../graphql/client';
 import React from 'react';
-import { NextPage } from 'next'
+import { NextPage } from 'next';
 
 const Home: NextPage = () => {
   const { data, loading, error } = useTestQueryQuery({
@@ -13,6 +13,6 @@ const Home: NextPage = () => {
       <h1>test</h1>
     </>
   )
-}
+};
 
-export default Home
+export default Home;

@@ -1,6 +1,6 @@
 import { addResolveFunctionsToSchema } from 'apollo-server-express';
 import { buildClientSchema } from "graphql";
-import introspection from "../graphql/graphql.schema.json";
+import introspection from "../../graphql/graphql.schema.json";
 
 import { resolvers } from "./resolvers";
 

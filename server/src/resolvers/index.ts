@@ -1,4 +1,4 @@
-import { Resolvers } from "../../graphql/generate/server";
+import { Resolvers } from "../../../graphql/generate/server";
 import { Mutation } from './mutations';
 import { Query } from './queries';
 
