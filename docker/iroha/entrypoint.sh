@@ -3,4 +3,4 @@
 #do
 #done
 sleep 10
-irohad --genesis_block genesis.block --config config.docker --keypair_name $KEY --overwrite-ledger
+irohad --genesis_block genesis.block --config config.docker --keypair_name node0
