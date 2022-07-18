@@ -29,7 +29,10 @@ services:
     environment: 
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_DB=iroha
     ports:
       - 5432:5432
+    volumes:
+      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
     networks:
       - iroha-react-network

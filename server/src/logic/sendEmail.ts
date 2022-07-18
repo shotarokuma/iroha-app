@@ -2,6 +2,7 @@ import nodemailer from "nodemailer";
 import * as dotenv from "dotenv";
 dotenv.config();
 
+
 const transport = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -10,12 +11,29 @@ const transport = nodemailer.createTransport({
   },
 });
 
-export const sendNotificationCreateAccount = async()=> {
-  await transport.sendMail({
-    from: process.env.EMAIL_USER,
-    to: "shoutarou.kuma59@gmail.com", 
-    subject: "test", // Subject line
-    text: "test", // plain text body
-  })
-  .catch((err) => console.log(err));
+export const sendNotificationCreateAccount = async(
+  to:string,
+  account:string,
+  password:string
+)=> {
+  try{
+    await transport.sendMail({
+      from: process.env.EMAIL_USER,
+      to,
+      subject: "NO REPLY", 
+      text: `Thank you for utilizing our iroha-app
+
+
+          your account was created
+
+          account name: ${account}
+          password: ${password}
+
+          
+Shotaro Kumagai
+      `, 
+    })
+  } catch (err){
+    console.log(err)
+  };
 };
