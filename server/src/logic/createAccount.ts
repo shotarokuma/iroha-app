@@ -15,7 +15,7 @@ export const adminId = "admin@japan";
 const commandService = new CommandService(IROHA_ADDRESS,grpc.credentials.createInsecure());
 
 export const create = (accountName: String) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(() => {
     const keys = createKey(accountName, "japan");
     commands
       .createAccount(
@@ -32,11 +32,5 @@ export const create = (accountName: String) => {
           publicKey: keys[0],
         }
       )
-      .then(() => {
-        resolve(keys[1]);
-      })
-      .catch((err) => {
-        reject(err);
-      });
   });
 };
