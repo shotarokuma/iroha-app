@@ -1,6 +1,7 @@
 import { Test } from "../../../../graphql/server";
 import { MutationResolvers } from "../../../../graphql/server";
 import { createAccount } from "./createAccount";
+import { login } from "./login";
 
 const testMutation = (_parent:any, args:any):Test => {
   return {name:"test2"}
@@ -9,4 +10,5 @@ const testMutation = (_parent:any, args:any):Test => {
 export const Mutation:MutationResolvers = {
   testMutation,
   createAccount,
+  login
 };

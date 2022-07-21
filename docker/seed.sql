@@ -1,6 +1,6 @@
 CREATE TABLE iroha_user(
     account VARCHAR(40),
-    password VARCHAR(40),
+    password VARCHAR(100),
     email VARCHAR(50),
     publicKey TEXT UNIQUE,
     firstName VARCHAR(20),
@@ -16,10 +16,10 @@ CREATE TABLE cryptography(
 );
 
 INSERT INTO iroha_user(account,password,email,publicKey,firstName,lastName) VALUES
- ('admin@japan','1234',
+ ('admin@japan','$2a$10$zyuHf8stAfSXiOzaoEsgQerQ2sRJkZjekhSfXrsKxPNl00TK4H2Cy',
  'admin@admin.com',
  '313a07e6384776ed95447710d15e59148473ccfc052a681317a72a69f2a49910','admin','admin'),
- ('test@japan','1234',
+ ('test@japan','$2a$10$zyuHf8stAfSXiOzaoEsgQerQ2sRJkZjekhSfXrsKxPNl00TK4H2Cy',
  'test@test.com',
  '444d21c29c22e482bb5ce0897ea64d4105206082f4b733172ec75999c560fc27','test','test');
  

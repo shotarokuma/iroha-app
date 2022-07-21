@@ -1,42 +1,52 @@
-import { useCreateAccountMutation, User } from "../../../../graphql/client";
+import {
+  CreateAccountInput,
+  useCreateAccountMutation
+} from "../../../../graphql/client";
 import React from "react";
 import { NextPage } from "next";
+import { useRouter } from 'next/router';
+import { useForm, FieldValues } from "react-hook-form";
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
 import Grid from "@mui/material/Grid";
-import KeyIcon from '@mui/icons-material/Key';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Header from "../../../components/Header";
+import FormController from "../../../components/FormController";
 
 
 const Page: NextPage = () => {
-  const [createAccountMutation] = useCreateAccountMutation();
+  const router = useRouter();
+  const { handleSubmit, control } = useForm<CreateAccountInput | FieldValues>();
+  const [createAccountMutation, { loading: createLoading, error: mutationError }] = useCreateAccountMutation();
 
-  const createAccount = React.useCallback(() => {
+  const onSubmit = React.useCallback(
+    async (inputData: CreateAccountInput | FieldValues) => {
+      try {
+        await createAccountMutation({
+          variables: {
+            input: {
+              email: inputData.email,
+              first: inputData.first,
+              last: inputData.last,
+              password: inputData.password
+            }
+          }
+        });
+        alert("creates an account and sent Email for the user");
+        router.push("/admin");
+      } catch (err) {
+        alert(err);
+      }
+    }, [createAccountMutation, router]);
 
-    //mock data
-    const user: User = {
-      first: "shotaro",
-      last: "kumagai",
-      email: "--------------",
-      password: "5959"
-    };
-
-    createAccountMutation({
-      variables: { input: user }
-    })
-  }, [createAccountMutation])
-
-  const handlCreateAccount = () => {
-    createAccount();
-  }
 
   return (
     <>
       <Header />
       <Container component="main" maxWidth="xs">
-        <KeyIcon color="primary" style={{
+        <AccountCircleIcon color="primary" style={{
           display: "block",
           marginLeft: "auto",
           marginRight: "auto",
@@ -47,69 +57,54 @@ const Page: NextPage = () => {
         }}>
           Signup
         </Typography>
-        <form onSubmit={handlCreateAccount}>
-          <Grid container spacing={5}>
+        <form
+          style={{
+            marginTop: "50px"
+          }}
+        >
+          <Grid container spacing={3}>
             <Grid item xs={6}>
-              <TextField
-                autoComplete="name"
-                name="name"
-                variant="outlined"
-                required
-                id="Name"
-                label="First Name"
-                autoFocus
-                style={{
-                  marginTop: "50px"
-                }}
+              <FormController
+                name="first"
+                control={control}
+                label="input client's first name"
               />
             </Grid>
             <Grid item xs={6}>
-              <TextField
-                autoComplete="name"
-                name="name"
-                variant="outlined"
-                required
-                id="Name"
-                label="Last Name"
-                autoFocus
-                style={{
-                  marginTop: "50px"
-                }}
+              <FormController
+                name="last"
+                control={control}
+                label="input client's last name"
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
+              <FormController
                 name="email"
+                control={control}
+                label="input client's email"
+                fullWidth={true}
               />
             </Grid>
             <Grid item xs={12} sm={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="passward"
-                label="Passward"
-                type="password"
-                id="passward"
+              <FormController
+                name="password"
+                control={control}
+                label="input client's password"
+                fullWidth={true}
               />
             </Grid>
+
+            <Grid item xs={12} sm={12}>
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={handleSubmit(onSubmit)}
+              >
+                Sign Up
+              </Button>
+            </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            style={{
-              marginTop: "30px"
-            }}
-          >
-            Sign Up
-          </Button>
         </form>
       </Container>
     </>

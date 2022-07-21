@@ -1,4 +1,5 @@
 type Mutation{
   testMutation(name:String):Test,
-  createAccount(input:CreateAccountInput!):Boolean
+  createAccount(input:CreateAccountInput!):Boolean,
+  login(input:LoginInput!):String
 }
