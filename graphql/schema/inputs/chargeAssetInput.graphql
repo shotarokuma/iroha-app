@@ -1,0 +1,4 @@
+input ChargeAssetInput{
+  asset: String!,
+  amount:String!,
+}

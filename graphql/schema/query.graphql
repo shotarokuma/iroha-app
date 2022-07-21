@@ -1,3 +1,4 @@
 type Query{
-  testQuery(name:String):Test
+  testQuery(name:String):Test,
+  getAsset(input: GetAssetInput!):[String]!,
 }

@@ -2,6 +2,8 @@ import bcrypt from "bcryptjs";
 import { create } from "../../logic/createAccount";
 import { sendNotificationCreateAccount } from "../../logic/sendEmail";
 import { pool } from "../../db";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 export const createAccount = async (
   _parent: any,
@@ -11,7 +13,7 @@ export const createAccount = async (
   const last =  `${args.input.last}`.toLowerCase();
   const { email, password } = args.input;
   const keys = await create(first[0] + last);
-  const account = `${first[0] + last}@japan`;
+  const account = `${first[0] + last}@${process.env.DOMAIN}`;
 
   try {
     const encryptedPassword = await bcrypt.hash(password, 10);

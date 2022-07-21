@@ -1,0 +1,3 @@
+query getAsset($input:GetAssetInput!){
+  getAsset(input: $input)
+}

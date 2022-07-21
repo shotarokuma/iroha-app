@@ -1,0 +1,3 @@
+mutation chargeAsset($input: ChargeAssetInput!){
+  chargeAsset(input: $input)
+}

@@ -1,0 +1,3 @@
+input GetAssetInput {
+  account: String!
+}

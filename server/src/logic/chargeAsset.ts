@@ -1,14 +1,12 @@
 import commands from "iroha-helpers/lib/commands";
 import { commandService } from "./commands";
-import { createKey } from "./createKey";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-export const create = (accountName: String): Promise<String[] | any> => {
+export const charge = (assetId: String, amount: String): Promise<void> => {
   return new Promise((resolve, reject) => {
-    const keys = createKey(accountName, process.env.DOMAIN);
     commands
-      .createAccount(
+      .addAssetQuantity(
         {
           privateKeys: process.env.ADMIN_PRIVATE_KEY,
           creatorAccountId: process.env.ADMIN_ID,
@@ -17,14 +15,10 @@ export const create = (accountName: String): Promise<String[] | any> => {
           timeoutLimit: 5000,
         },
         {
-          accountName: accountName,
-          domainId: process.env.DOMAIN,
-          publicKey: keys[0],
+          assetId: assetId,
+          amount: amount,
         }
       )
-      .then(() => {
-        resolve(keys);
-      })
       .catch((err) => {
         reject(err);
       });

@@ -1,5 +1,7 @@
 type Mutation{
   testMutation(name:String):Test,
+  chargeAsset(input:ChargeAssetInput!):Boolean,
   createAccount(input:CreateAccountInput!):Boolean,
+  createAsset(input:CreateAssetInput!):Boolean,
   login(input:LoginInput!):String
 }
