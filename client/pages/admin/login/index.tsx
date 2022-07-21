@@ -9,6 +9,7 @@ import KeyIcon from '@mui/icons-material/Key';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import FormController from "../../../components/FormController";
+import Loading from "../../../components/Loading";
 
 const Page: NextPage = () => {
   const router = useRouter();
@@ -32,6 +33,10 @@ const Page: NextPage = () => {
         alert(err);
       }
     }, [loginMutation, router]);
+
+  if(loginLoading){
+    return <Loading/>
+  }
 
   return (
     <Container component="main" maxWidth="xs">

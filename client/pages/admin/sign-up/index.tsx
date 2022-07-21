@@ -14,12 +14,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Header from "../../../components/Header";
 import FormController from "../../../components/FormController";
+import Loading from "../../../components/Loading";
 
 
 const Page: NextPage = () => {
   const router = useRouter();
   const { handleSubmit, control } = useForm<CreateAccountInput | FieldValues>();
-  const [createAccountMutation, { loading: createLoading, error: mutationError }] = useCreateAccountMutation();
+  const [createAccountMutation, { loading: createAccountLoading, error: mutationError }] = useCreateAccountMutation();
 
   const onSubmit = React.useCallback(
     async (inputData: CreateAccountInput | FieldValues) => {
@@ -40,6 +41,10 @@ const Page: NextPage = () => {
         alert(err);
       }
     }, [createAccountMutation, router]);
+
+  if(createAccountLoading){
+    return <Loading/>
+  }
 
 
   return (
