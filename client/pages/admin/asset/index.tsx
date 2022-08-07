@@ -31,10 +31,12 @@ const Page: NextPage = () => {
             }
           }
         })
+        alert("created new bit coin")
+        router.push("/admin");
       }catch(err){
         alert(err);
       }
-    },[createAssetMutation])
+    },[createAssetMutation, router])
 
   if (createAssetLoading) {
     return <Loading />

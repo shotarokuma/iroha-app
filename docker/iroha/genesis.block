@@ -79,13 +79,6 @@
                           }
                        },
                        {
-                          "createAsset":{
-                             "assetName":"coin",
-                             "domainId":"japan",
-                             "precision":2
-                          }
-                       },
-                       {
                           "createAccount":{
                              "accountName":"admin",
                              "domainId":"japan",

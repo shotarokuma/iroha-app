@@ -1,0 +1,5 @@
+type Asset{
+  assetId:String!,
+  accountId: String!,
+  balance:String!,
+}

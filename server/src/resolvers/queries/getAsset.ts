@@ -1,9 +1,9 @@
+import { Asset } from "../../../../graphql/server";
 import { get } from "../../logic/getAsset";
 import { pool } from "../../db";
 
-export const getAsset = async (_parent: any, args: any): Promise<string[]> => {
+export const getAsset = async (_parent: any, args: any): Promise<Asset[]> => {
   const { account } = args.input;
-  let privateKey = "";
 
   try {
     const res  = await pool.query(`
@@ -11,9 +11,8 @@ export const getAsset = async (_parent: any, args: any): Promise<string[]> => {
       WHERE publicKey IN (
         SELECT publicKey FROM iroha_user
         WHERE account = '${account}')
-    `)
-
-    const asset = await get(account,'');
+    `);
+    const asset = await get(account,res.rows[0].privatekey);
     return asset;
 
   } catch (err) {

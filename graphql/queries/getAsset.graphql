@@ -1,3 +1,7 @@
 query getAsset($input:GetAssetInput!){
-  getAsset(input: $input)
+  getAsset(input: $input){
+    assetId
+    accountId
+    balance
+  }
 }
