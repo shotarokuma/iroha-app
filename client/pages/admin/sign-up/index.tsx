@@ -11,6 +11,7 @@ import Grid from "@mui/material/Grid";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { useAdmin } from "../../../hooks/admin";
 import Header from "../../../components/Header";
 import FormController from "../../../components/FormController";
 import Loading from "../../../components/Loading";
@@ -20,6 +21,7 @@ const Page: NextPage = () => {
   const router = useRouter();
   const { handleSubmit, control } = useForm<CreateAccountInput | FieldValues>();
   const [createAccountMutation, { loading: createAccountLoading, error: mutationError }] = useCreateAccountMutation();
+  const { roots, onClickLogOut }  = useAdmin();
 
   const onSubmit = React.useCallback(
     async (inputData: CreateAccountInput | FieldValues) => {
@@ -37,6 +39,7 @@ const Page: NextPage = () => {
         alert("creates an account and sent Email for the user");
         router.push("/admin");
       } catch (err) {
+
         alert(err);
       }
     }, [createAccountMutation, router]);
@@ -48,7 +51,7 @@ const Page: NextPage = () => {
 
   return (
     <>
-      <Header />
+      <Header roots={roots} onClickLogOut={onClickLogOut}/>
       <Container component="main" maxWidth="xs">
         <AccountCircleIcon color="primary" style={{
           display: "block",
