@@ -10,7 +10,7 @@ export const create = (accountName: String): Promise<String[] | any> => {
     commands
       .createAccount(
         {
-          privateKeys: process.env.ADMIN_PRIVATE_KEY,
+          privateKeys: [process.env.ADMIN_PRIVATE_KEY],
           creatorAccountId: process.env.ADMIN_ID,
           quorum: 1,
           commandService,

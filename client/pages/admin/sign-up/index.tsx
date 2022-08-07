@@ -5,7 +5,7 @@ import {
 import React from "react";
 import { NextPage } from "next";
 import { useRouter } from 'next/router';
-import { useForm, FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -19,12 +19,12 @@ import Loading from "../../../components/Loading";
 
 const Page: NextPage = () => {
   const router = useRouter();
-  const { handleSubmit, control } = useForm<CreateAccountInput | FieldValues>();
+  const { handleSubmit, control } = useForm<CreateAccountInput>();
   const [createAccountMutation, { loading: createAccountLoading, error: mutationError }] = useCreateAccountMutation();
   const { roots, onClickLogOut }  = useAdmin();
 
   const onSubmit = React.useCallback(
-    async (inputData: CreateAccountInput | FieldValues) => {
+    async (inputData: CreateAccountInput) => {
       try {
         await createAccountMutation({
           variables: {
@@ -36,10 +36,9 @@ const Page: NextPage = () => {
             }
           }
         });
-        alert("creates an account and sent Email for the user");
+        alert("created an account and sent Email for the user");
         router.push("/admin");
       } catch (err) {
-
         alert(err);
       }
     }, [createAccountMutation, router]);
@@ -53,7 +52,7 @@ const Page: NextPage = () => {
     <>
       <Header roots={roots} onClickLogOut={onClickLogOut}/>
       <Container component="main" maxWidth="xs">
-        <AccountCircleIcon color="primary" style={{
+        <AccountCircleIcon color="secondary" style={{
           display: "block",
           marginLeft: "auto",
           marginRight: "auto",

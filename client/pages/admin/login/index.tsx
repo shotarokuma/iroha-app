@@ -2,7 +2,7 @@ import { LoginInput, useLoginMutation } from "../../../../graphql/client";
 import React from "react";
 import { NextPage } from "next";
 import { useRouter } from 'next/router';
-import { useForm, FieldValues } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import KeyIcon from '@mui/icons-material/Key';
@@ -13,12 +13,12 @@ import Loading from "../../../components/Loading";
 
 const Page: NextPage = () => {
   const router = useRouter();
-  const { handleSubmit, control } = useForm<LoginInput | FieldValues>();
+  const { handleSubmit, control } = useForm<LoginInput >();
 
   const [loginMutation,{ loading: loginLoading, error: mutationError },] = useLoginMutation();
 
   const onSubmit = React.useCallback(
-    async (inputData: LoginInput | FieldValues) => {
+    async (inputData: LoginInput ) => {
       try {
         await loginMutation({
           variables: {

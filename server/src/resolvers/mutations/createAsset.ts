@@ -5,7 +5,7 @@ export const createAsset = async (
   args: any
 ): Promise<boolean> => {
 
-  const { asset } = args.input.asset;
+  const { asset } = args.input;
   try {
     await create(asset);
     return true;

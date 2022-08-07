@@ -8,7 +8,7 @@ export const charge = (assetId: String, amount: String): Promise<void> => {
     commands
       .addAssetQuantity(
         {
-          privateKeys: process.env.ADMIN_PRIVATE_KEY,
+          privateKeys: [process.env.ADMIN_PRIVATE_KEY],
           creatorAccountId: process.env.ADMIN_ID,
           quorum: 1,
           commandService,

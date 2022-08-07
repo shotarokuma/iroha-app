@@ -6,10 +6,12 @@ export const get = (
   privateKey: String
 ): Promise<String[] | any> => {
   return new Promise((resolve, reject) => {
+    console.log(account);
+    console.log(privateKey)
     queries
       .getAccountAssets(
         {
-          privateKey: privateKey,
+          privateKey: [privateKey],
           creatorAccountId: account,
           queryService,
           timeoutLimit: 5000,

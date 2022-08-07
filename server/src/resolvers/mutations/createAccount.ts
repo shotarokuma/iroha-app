@@ -36,7 +36,7 @@ export const createAccount = async (
     await sendNotificationCreateAccount(email, account, password);
   } catch (err) {
     console.log(err);
-    return false;
+    return err;
   }
   return true;
 };

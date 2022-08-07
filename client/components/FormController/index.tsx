@@ -1,15 +1,14 @@
-import { LoginInput } from '../../../graphql/client';
 import React from 'react';
-import { Controller, Control, FieldValues } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 
 type Props = {
   name: string;
-  control: Control<FieldValues | LoginInput, object>;
+  control: any;
   label: string;
   defaultValue?: string;
   readOnly?: boolean;
-  fullWidth?:boolean;
+  fullWidth?: boolean;
 };
 
 const FormController: React.FC<Props> = ({
@@ -33,7 +32,7 @@ const FormController: React.FC<Props> = ({
           value={value}
           label={label}
           fullWidth={fullWidth}
-          defaultValue={defaultValue} 
+          defaultValue={defaultValue}
           inputProps={
             { readOnly: readOnly, }
           } />
