@@ -8,6 +8,7 @@ import Grid from "@mui/material/Grid";
 import KeyIcon from "@mui/icons-material/Key";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { storeToken, logout } from "../../../auth/admin";
 import FormController from "../../../components/FormController";
 import Loading from "../../../components/Loading";
 
@@ -20,7 +21,7 @@ const Page: NextPage = () => {
   const onSubmit = React.useCallback(
     async (inputData: LoginInput) => {
       try {
-        await loginMutation({
+        const res = await loginMutation({
           variables: {
             input: {
               account: "admin@japan",
@@ -28,6 +29,7 @@ const Page: NextPage = () => {
             },
           },
         });
+        storeToken(res?.data?.login);
         await router.push("/admin");
       } catch (err) {
         alert(err);
@@ -35,6 +37,13 @@ const Page: NextPage = () => {
     },
     [loginMutation, router]
   );
+
+  React.useEffect(() => {
+    const removeToken = async (): Promise<void> => {
+      await logout();
+    };
+    removeToken().catch((err) => alert(err));
+  }, []);
 
   if (loginLoading) {
     return <Loading />;
