@@ -1,6 +1,6 @@
-input CreateAccountInput{
-  first:String!,
-  last:String!,
-  password:String!,
-  email:String!,
+input CreateAccountInput {
+  first: String!
+  last: String!
+  password: String!
+  email: String!
 }

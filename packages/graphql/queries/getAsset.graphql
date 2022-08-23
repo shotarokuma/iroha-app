@@ -1,5 +1,5 @@
-query getAsset($input:GetAssetInput!){
-  getAsset(input: $input){
+query getAsset($input: GetAssetInput!) {
+  getAsset(input: $input) {
     assetId
     accountId
     balance

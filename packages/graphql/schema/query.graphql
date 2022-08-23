@@ -1,4 +1,4 @@
-type Query{
-  testQuery(name:String):Test,
-  getAsset(input: GetAssetInput!):[Asset]!,
+type Query {
+  testQuery(name: String): Test
+  getAsset(input: GetAssetInput!): [Asset]!
 }

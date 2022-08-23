@@ -1,4 +1,4 @@
-import { Asset, useGetAssetQuery } from "../../../graphql//client";
+import { useGetAssetQuery } from "../../../graphql//client";
 import React from "react";
 import { NextPage } from "next";
 import Container from "@mui/material/Container";
@@ -28,7 +28,7 @@ const Page: NextPage = () => {
       <Container component="main" maxWidth="lg">
         <Grid container spacing={1}>
           {data &&
-            data.getAsset.map((a: Asset, ind: number) => {
+            data.getAsset.map((a: any, ind: number) => {
               return (
                 <Grid item key={ind} xs={3}>
                   <AssetCard assetId={a.assetId} balance={a.balance} />

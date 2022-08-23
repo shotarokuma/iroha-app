@@ -1,5 +1,5 @@
-query testQuery($name:String){
-  testQuery(name:$name){
+query testQuery($name: String) {
+  testQuery(name: $name) {
     name
   }
 }

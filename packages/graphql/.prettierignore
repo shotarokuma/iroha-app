@@ -1,0 +1,4 @@
+client/
+generate/
+server/
+graphql.schema.json

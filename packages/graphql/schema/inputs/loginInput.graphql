@@ -1,4 +1,4 @@
-input LoginInput{
-  account:String!,
-  password: String!,
+input LoginInput {
+  account: String!
+  password: String!
 }

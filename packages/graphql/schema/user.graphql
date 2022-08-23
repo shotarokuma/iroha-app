@@ -1,6 +1,6 @@
-type User{
-  first:String!,
-  last:String!,
-  password:String!,
-  email:String!,
+type User {
+  first: String!
+  last: String!
+  password: String!
+  email: String!
 }

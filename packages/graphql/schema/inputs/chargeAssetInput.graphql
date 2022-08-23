@@ -1,4 +1,4 @@
-input ChargeAssetInput{
-  asset: String!,
-  amount:String!,
+input ChargeAssetInput {
+  asset: String!
+  amount: String!
 }

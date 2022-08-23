@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "yarn generate --watch & yarn watch",
     "generate": "graphql-codegen --config codegen.yml",
+    "lint": "prettier . --check",
+    "fix": "yarn lint --write",
+    "precommit": "lint-staged",
     "build:cjs": "tsc --project tsconfig.cjs.json",
     "build:esm": "tsc --project tsconfig.esm.json",
     "watch:cjs": "yarn build:cjs --watch",
@@ -28,7 +31,8 @@
     "@graphql-codegen/typescript-react-apollo": "3.3.1",
     "@graphql-codegen/typescript-resolvers": "^2.7.1",
     "@types/node": "18.0.5",
-    "lint-staged": "10.5.4",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
     "typescript": "4.7.4"
   }
 }
