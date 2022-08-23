@@ -1,0 +1,25 @@
+{
+  "name": "iroha-app",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "./packages/*"
+    ]
+  },
+  "scripts": {
+    "client": "yarn workspace client",
+    "graphql": "yarn workspace graphql",
+    "server": "yarn workspace server",
+    "lint:client": "yarn client lint",
+    "lint:graphql": "yarn graphql lint",
+    "lint:server": "yarn server lint",
+    "fix": "yarn client fix && yarn graphql fix && yarn server fix",
+    "precommit": "yarn client precommit",
+    "start:client": "yarn client start",
+    "start:server": "yarn server start",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^8.0.0"
+  }
+}

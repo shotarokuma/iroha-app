@@ -1,0 +1,48 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint:typecheck": "tsc -p . --noEmit",
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier . --check",
+    "lint": "yarn lint:typecheck && yarn lint:eslint && yarn lint:prettier",
+    "fix:eslint": "yarn lint:eslint --fix",
+    "fix:prettier": "yarn lint:prettier --write",
+    "fix": "yarn lint:typecheck && yarn fix:eslint && yarn fix:prettier",
+    "precommit": "yarn lint:typecheck && lint-staged"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.6.9",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.9.0",
+    "graphql": "15.5.0",
+    "next": "12.2.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.33.1"
+  },
+  "devDependencies": {
+    "@types/node": "18.0.5",
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.34.0",
+    "eslint": "^8.0.1",
+    "eslint-config-next": "12.2.2",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^22.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.30.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "typescript": "*"
+  }
+}
