@@ -18,7 +18,7 @@ yarn client dev
 yarn server dev
 ```
 
-### generate code for graphql
+### Generate code for graphql
 ```
 yarn graphql dev
 ```
