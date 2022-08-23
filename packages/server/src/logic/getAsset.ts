@@ -3,8 +3,8 @@ import queries from "iroha-helpers/lib/queries";
 import { queryService } from "./commands";
 
 export const get = (
-  account: String,
-  privateKey: String
+  account: string,
+  privateKey: string
 ): Promise<Asset[] | any> => {
   return new Promise((resolve, reject) => {
     queries

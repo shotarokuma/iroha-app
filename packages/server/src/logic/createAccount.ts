@@ -4,7 +4,7 @@ import { createKey } from "./createKey";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-export const create = (accountName: String): Promise<String[] | any> => {
+export const create = (accountName: string): Promise<string[] | any> => {
   return new Promise((resolve, reject) => {
     const keys = createKey(accountName, process.env.DOMAIN);
     commands

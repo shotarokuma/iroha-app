@@ -3,7 +3,7 @@ import { commandService } from "./commands";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-export const charge = (assetId: String, amount: String): Promise<void> => {
+export const charge = (assetId: string, amount: string): Promise<void> => {
   return new Promise((resolve, reject) => {
     commands
       .addAssetQuantity(

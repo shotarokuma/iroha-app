@@ -3,7 +3,7 @@ import { commandService } from "./commands";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-export const create = async (assetName: String): Promise<void> => {
+export const create = async (assetName: string): Promise<void> => {
   return Promise.resolve()
     .then(async () => {
       await commands.createAsset(

@@ -17,7 +17,7 @@ export const login = async (_parent: any, args: any): Promise<string> => {
         expiresIn: "1h",
       });
       return token;
-    }else {
+    } else {
       throw Error("invalid password");
     }
   } catch (err) {

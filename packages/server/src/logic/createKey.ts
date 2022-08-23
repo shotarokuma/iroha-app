@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import { createKeyPair } from "ed25519.js";
 
-export const createKey = (account: String, domain: String): String[] => {
+export const createKey = (account: string, domain: string): string[] => {
   let publicKey = "";
   let privateKey = "";
   const KEY_DIR = "./keys/";

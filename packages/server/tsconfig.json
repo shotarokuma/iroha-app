@@ -7,5 +7,12 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "include": ["index.ts","globals.d.ts", "express.d.ts", "express-session.d.ts",  "src/**/*.ts","generate/**/*.ts"]
+  "include": [
+    "index.ts",
+    "globals.d.ts",
+    "express.d.ts",
+    "express-session.d.ts",
+    "src/**/*.ts",
+    "generate/**/*.ts"
+  ]
 }

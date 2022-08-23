@@ -9,8 +9,8 @@ export const createAccount = async (
   _parent: any,
   args: any
 ): Promise<boolean> => {
-  const first= `${args.input.first}`.toLowerCase();
-  const last =  `${args.input.last}`.toLowerCase();
+  const first = `${args.input.first}`.toLowerCase();
+  const last = `${args.input.last}`.toLowerCase();
   const { email, password } = args.input;
   const keys = await create(first[0] + last);
   const account = `${first[0] + last}@${process.env.DOMAIN}`;

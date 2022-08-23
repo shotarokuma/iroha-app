@@ -14,7 +14,7 @@
     "lint:graphql": "yarn graphql lint",
     "lint:server": "yarn server lint",
     "fix": "yarn client fix && yarn graphql fix && yarn server fix",
-    "precommit": "yarn client precommit",
+    "precommit": "yarn client precommit && yarn server precommit",
     "start:client": "yarn client start",
     "start:server": "yarn server start",
     "prepare": "husky install"

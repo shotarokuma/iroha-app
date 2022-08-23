@@ -1,4 +1,4 @@
-import { addResolveFunctionsToSchema } from 'apollo-server-express';
+import { addResolveFunctionsToSchema } from "apollo-server-express";
 import { buildClientSchema } from "graphql";
 import introspection from "../../graphql/graphql.schema.json";
 
@@ -8,4 +8,4 @@ import { resolvers } from "./resolvers";
 // @ts-ignore
 export const schema = buildClientSchema(introspection);
 
-addResolveFunctionsToSchema({schema,resolvers});
+addResolveFunctionsToSchema({ schema, resolvers });
