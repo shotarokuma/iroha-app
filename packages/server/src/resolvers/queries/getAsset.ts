@@ -1,8 +1,10 @@
-import { Asset } from "../../../../graphql/server";
+import { Asset, Role } from "../../../../graphql/server";
+import { auth } from "../../auth";
 import { get } from "../../logic/getAsset";
 import { pool } from "../../db";
 
-export const getAsset = async (_parent: any, args: any): Promise<Asset[]> => {
+export const getAsset = async (_parent, args, context): Promise<Asset[]> => {
+  if (!auth(context.role, Role.Admin)) throw Error("Authorization fails");
   const { account } = args.input;
 
   try {

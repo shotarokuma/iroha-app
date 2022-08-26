@@ -1,4 +1,6 @@
 import bcrypt from "bcryptjs";
+import { Role } from "../../../../graphql/server";
+import { auth } from "../../auth";
 import { create } from "../../logic/createAccount";
 import { sendNotificationCreateAccount } from "../../logic/sendEmail";
 import { pool } from "../../db";
@@ -6,9 +8,11 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 export const createAccount = async (
-  _parent: any,
-  args: any
+  _parent,
+  args,
+  context
 ): Promise<boolean> => {
+  if (!auth(context.role, Role.Admin)) throw Error("Authorization fails");
   const first = `${args.input.first}`.toLowerCase();
   const last = `${args.input.last}`.toLowerCase();
   const { email, password } = args.input;
