@@ -6,6 +6,7 @@ import {
 } from "../../../graphql//client";
 import React from "react";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
@@ -21,6 +22,9 @@ import FormController from "../../components/FormController";
 import Loading from "../../components/Loading";
 
 const Page: NextPage = () => {
+  const router = useRouter();
+  const { asset } = router.query;
+  const [loading, setLoading] = React.useState<boolean>(false);
   const { data, loading: getAssetLoading } = useGetAssetQuery({
     variables: {
       input: {
@@ -53,8 +57,11 @@ const Page: NextPage = () => {
             },
           },
         });
-        alert("charged your bit coin");
+        setLoading(true);
         setOpen(false);
+        setTimeout(() => {
+          router.reload();
+        }, 5000);
       } catch (err) {
         alert(err);
       }
@@ -62,7 +69,16 @@ const Page: NextPage = () => {
     [chargeAssetMutation, getTarget]
   );
 
-  if (getAssetLoading || chargeAssetLoading) {
+  React.useEffect(() => {
+    if (asset === "true") {
+      setLoading(true);
+      setTimeout(() => {
+        router.reload();
+      }, 5000);
+    }
+  }, []);
+
+  if (getAssetLoading || chargeAssetLoading || loading) {
     return <Loading />;
   }
 
@@ -88,7 +104,9 @@ const Page: NextPage = () => {
         </Grid>
       </Container>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>{"Edit your data"}</DialogTitle>
+        <DialogTitle>
+          {"input amount of bitcoin you want to charge"}
+        </DialogTitle>
         <form>
           <DialogContent
             style={{
@@ -98,7 +116,7 @@ const Page: NextPage = () => {
             <FormController
               name="amount"
               control={control}
-              label="input amount of bitcoin you want to charge"
+              label="amount of bitcoin"
               fullWidth={true}
             />
           </DialogContent>

@@ -32,8 +32,7 @@ const Page: NextPage = () => {
             },
           },
         });
-        alert("created new bit coin");
-        await router.push("/admin");
+        await router.push("/admin?asset=true");
       } catch (err) {
         alert(err);
       }
