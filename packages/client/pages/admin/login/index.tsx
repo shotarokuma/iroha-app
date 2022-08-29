@@ -1,4 +1,4 @@
-import { LoginInput, useLoginMutation } from "../../../../graphql/client";
+import { Role, LoginInput, useLoginMutation } from "../../../../graphql/client";
 import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
@@ -29,7 +29,7 @@ const Page: NextPage = () => {
             },
           },
         });
-        storeToken(res?.data?.login);
+        storeToken(res?.data?.login, Role.Admin);
         await router.push("/admin");
       } catch (err) {
         alert(err);
