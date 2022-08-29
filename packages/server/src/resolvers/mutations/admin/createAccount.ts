@@ -1,9 +1,9 @@
 import bcrypt from "bcryptjs";
-import { Role } from "../../../../graphql/server";
-import { auth } from "../../auth";
-import { create } from "../../logic/createAccount";
-import { sendNotificationCreateAccount } from "../../logic/sendEmail";
-import { pool } from "../../db";
+import { Role } from "../../../../../graphql/server";
+import { auth } from "../../../auth";
+import { create } from "../../../logic/createAccount";
+import { sendNotificationCreateAccount } from "../../../logic/sendEmail";
+import { pool } from "../../../db";
 import * as dotenv from "dotenv";
 dotenv.config();
 

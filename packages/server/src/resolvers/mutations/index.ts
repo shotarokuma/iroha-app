@@ -1,7 +1,7 @@
 import { MutationResolvers } from "../../../../graphql/server";
-import { createAccount } from "./createAccount";
-import { createAsset } from "./createAsset";
-import { chargeAsset } from "./chargeAsset";
+import { createAccount } from "./admin/createAccount";
+import { createAsset } from "./admin/createAsset";
+import { chargeAsset } from "./admin/chargeAsset";
 import { login } from "./login";
 
 export const Mutation: MutationResolvers = {

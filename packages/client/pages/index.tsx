@@ -1,12 +1,16 @@
 import React from "react";
 import { NextPage } from "next";
+import { useUser } from "../hooks/user";
+import Header from "../components/Header";
 
-const Home: NextPage = () => {
+const Page: NextPage = () => {
+  const { roots, onClickLogOut } = useUser();
+
   return (
     <>
-      <h1>test</h1>
+      <Header roots={roots} onClickLogOut={onClickLogOut} />
     </>
   );
 };
 
-export default Home;
+export default Page;

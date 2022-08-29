@@ -13,7 +13,7 @@ export const login = async (_parent, args, context): Promise<string> => {
     const res = await pool.query(`
       SELECT *
       FROM iroha_user 
-      WHERE account = 'admin@japan' 
+      WHERE account = '${account}' 
     `);
     if (await bcrypt.compare(password, res.rows[0].password)) {
       const token = jwt.sign(
