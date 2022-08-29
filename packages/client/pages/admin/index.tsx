@@ -9,7 +9,11 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Container from "@mui/material/Container";
+import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -33,6 +37,7 @@ const Page: NextPage = () => {
     },
   });
   const [open, setOpen] = React.useState<boolean>(false);
+  const [form, setForm] = React.useState<0 | 1>(0);
   const handleClose = (): void => {
     setOpen(false);
   };
@@ -104,32 +109,54 @@ const Page: NextPage = () => {
         </Grid>
       </Container>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>
-          {"input amount of bitcoin you want to charge"}
-        </DialogTitle>
-        <form>
-          <DialogContent
-            style={{
-              width: 500,
-            }}
-          >
-            <FormController
-              name="amount"
-              control={control}
-              label="amount of bitcoin"
-              fullWidth={true}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={handleSubmit(onSubmit)}
-              variant="contained"
-              color="primary"
-            >
-              send
-            </Button>
-          </DialogActions>
-        </form>
+        {form === 0 ? (
+          <>
+            <DialogTitle>
+              {"input amount of bitcoin you want to charge"}
+            </DialogTitle>
+            <form>
+              <DialogContent
+                style={{
+                  width: 500,
+                }}
+              >
+                <FormController
+                  name="amount"
+                  control={control}
+                  label="amount of bitcoin"
+                  fullWidth={true}
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  onClick={handleSubmit(onSubmit)}
+                  variant="contained"
+                  color="primary"
+                >
+                  send
+                </Button>
+              </DialogActions>
+            </form>
+          </>
+        ) : (
+          <></>
+        )}
+        <BottomNavigation
+          showLabels
+          value={form}
+          onChange={(event, newValue: 0 | 1) => {
+            setForm(newValue);
+          }}
+        >
+          <BottomNavigationAction
+            label="Charge"
+            icon={<CurrencyBitcoinIcon />}
+          />
+          <BottomNavigationAction
+            label="Transfer"
+            icon={<CurrencyExchangeIcon />}
+          />
+        </BottomNavigation>
       </Dialog>
     </>
   );
