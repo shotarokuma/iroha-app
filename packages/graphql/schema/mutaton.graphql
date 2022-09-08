@@ -4,4 +4,5 @@ type Mutation {
   createAccount(input: CreateAccountInput!): Boolean
   createAsset(input: CreateAssetInput!): Boolean
   login(input: LoginInput!): String
+  sendingAsset(input: SendingAssetInput!): Boolean
 }

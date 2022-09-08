@@ -15,6 +15,15 @@ CREATE TABLE cryptography(
     FOREIGN KEY(publicKey) REFERENCES iroha_user(publicKey)
 );
 
+CREATE TABLE receive_asset(
+   account VARCHAR(40),
+   asset VARCHAR(40),
+   amount VARCHAR(20),
+   password VARCHAR(100),
+   PRIMARY KEY(password),
+   FOREIGN KEY (account) REFERENCES iroha_user(account)
+);
+
 INSERT INTO iroha_user(account,password,email,publicKey,firstName,lastName) VALUES
  ('admin@japan','$2a$10$zyuHf8stAfSXiOzaoEsgQerQ2sRJkZjekhSfXrsKxPNl00TK4H2Cy',
  'admin@admin.com',

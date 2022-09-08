@@ -1,8 +1,10 @@
 import {
   Role,
   ChargeAssetInput,
+  SendingAssetInput,
   useGetAssetQuery,
   useChargeAssetMutation,
+  useSendingAssetMutation,
 } from "../../../graphql//client";
 import React from "react";
 import { NextPage } from "next";
@@ -45,7 +47,11 @@ const Page: NextPage = () => {
   const { roots, onClickLogOut } = useAdmin();
   const [chargeAssetMutation, { loading: chargeAssetLoading }] =
     useChargeAssetMutation();
+  const [sendingAssetMutation, { loading: SendingAssetLoading }] =
+    useSendingAssetMutation();
   const { handleSubmit, control } = useForm<ChargeAssetInput>();
+  const { handleSubmit: handleTransferSubmit, control: transferControl } =
+    useForm<SendingAssetInput>();
 
   const getTarget = (): string | null => target;
 
@@ -74,6 +80,28 @@ const Page: NextPage = () => {
     [chargeAssetMutation, getTarget]
   );
 
+  const onTransferSubmit = React.useCallback(
+    async (inputData: SendingAssetInput) => {
+      try {
+        const assetId = getTarget();
+        if (!assetId) return;
+        await sendingAssetMutation({
+          variables: {
+            input: {
+              account: inputData.account,
+              asset: assetId,
+              amount: inputData.amount,
+            },
+          },
+        });
+        setOpen(false);
+      } catch (err) {
+        alert(err);
+      }
+    },
+    [sendingAssetMutation, getTarget]
+  );
+
   React.useEffect(() => {
     if (asset === "true") {
       setLoading(true);
@@ -83,7 +111,7 @@ const Page: NextPage = () => {
     }
   }, []);
 
-  if (getAssetLoading || chargeAssetLoading || loading) {
+  if (getAssetLoading || chargeAssetLoading || SendingAssetLoading || loading) {
     return <Loading />;
   }
 
@@ -139,7 +167,46 @@ const Page: NextPage = () => {
             </form>
           </>
         ) : (
-          <></>
+          <>
+            <DialogTitle>
+              {
+                "select the account into whom you transfer bitcoins and amount of it"
+              }
+            </DialogTitle>
+            <form>
+              <DialogContent
+                style={{
+                  width: 500,
+                }}
+              >
+                <div>
+                  <FormController
+                    name="account"
+                    control={transferControl}
+                    label="input account name"
+                    fullWidth={true}
+                  />
+                </div>
+                <div style={{ marginTop: 20 }}>
+                  <FormController
+                    name="amount"
+                    control={transferControl}
+                    label="amount of bitcoin"
+                    fullWidth={true}
+                  />
+                </div>
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  onClick={handleTransferSubmit(onTransferSubmit)}
+                  variant="contained"
+                  color="primary"
+                >
+                  send
+                </Button>
+              </DialogActions>
+            </form>
+          </>
         )}
         <BottomNavigation
           showLabels
