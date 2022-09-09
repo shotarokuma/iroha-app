@@ -26,6 +26,7 @@ const Page: NextPage = () => {
             input: {
               account: "admin@japan",
               password: inputData.password,
+              role: Role.Admin,
             },
           },
         });
@@ -85,6 +86,7 @@ const Page: NextPage = () => {
               control={control}
               label="input your password"
               fullWidth={true}
+              type="password"
             />
           </Grid>
           <Grid item xs={12}>

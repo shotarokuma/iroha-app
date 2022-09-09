@@ -26,10 +26,11 @@ const Page: NextPage = () => {
             input: {
               account: inputData.account,
               password: inputData.password,
+              role: Role.User,
             },
           },
         });
-        storeToken(res?.data?.login, Role.User);
+        storeToken(res?.data?.login, Role.User, inputData.account);
         await router.push("/");
       } catch (err) {
         alert(err);
@@ -83,6 +84,7 @@ const Page: NextPage = () => {
               control={control}
               label="input your password"
               fullWidth={true}
+              type="password"
             />
           </Grid>
           <Grid item xs={12}>

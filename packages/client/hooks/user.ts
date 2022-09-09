@@ -28,8 +28,8 @@ export const useUser = (): useUserReturnProps => {
       root: handleMovePages("/"),
     },
     {
-      name: "Create Account",
-      root: handleMovePages("/admin/sign-up"),
+      name: "Receive Asset",
+      root: handleMovePages("/receive"),
     },
     {
       name: "Create Asset",

@@ -10,11 +10,13 @@ interface Props {
 
 export const storeToken = (
   token: string | null | undefined,
-  role: Role
+  role: Role,
+  account?: string
 ): void => {
   if (!token) return;
   localStorage.setItem("token", token);
   localStorage.setItem("role", role);
+  if (account) localStorage.setItem("account", account);
 };
 
 export const logout = async (): Promise<void> => {
@@ -22,6 +24,7 @@ export const logout = async (): Promise<void> => {
     await client.resetStore();
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    if (localStorage.getItem("account")) localStorage.removeItem("account");
   } catch (err) {
     alert(err);
   }

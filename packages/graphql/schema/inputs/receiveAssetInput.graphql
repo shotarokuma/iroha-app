@@ -1,0 +1,4 @@
+input ReceiveAssetInput {
+  account: String!
+  password: Int!
+}

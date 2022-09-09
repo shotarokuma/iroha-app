@@ -1,4 +1,3 @@
-import { Role } from "../../../../graphql/server";
 import { auth } from "../../auth";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -8,18 +7,21 @@ dotenv.config();
 
 export const login = async (_parent, args, context): Promise<string> => {
   if (!auth(context.role)) throw Error("Authorization fails");
-  const { account, password } = args.input;
+  const { account, password, role } = args.input;
   try {
     const res = await pool.query(`
       SELECT *
       FROM iroha_user 
       WHERE account = '${account}' 
     `);
+    if (res.rows.length === 0) {
+      throw Error("invalid password");
+    }
     if (await bcrypt.compare(password, res.rows[0].password)) {
       const token = jwt.sign(
         {
           account: account,
-          role: Role.Admin,
+          role: role,
         },
         process.env.TOKEN_KEY,
         {

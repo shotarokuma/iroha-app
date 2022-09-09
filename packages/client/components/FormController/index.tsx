@@ -9,6 +9,7 @@ interface Props {
   defaultValue?: string;
   readOnly?: boolean;
   fullWidth?: boolean;
+  type?: "password" | "number";
 }
 
 const FormController: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const FormController: React.FC<Props> = ({
   defaultValue = "",
   readOnly = false,
   fullWidth = false,
+  type = "text",
 }) => {
   return (
     <Controller
@@ -28,6 +30,7 @@ const FormController: React.FC<Props> = ({
           variant="outlined"
           required
           autoFocus
+          type={type}
           onChange={onChange}
           value={value}
           label={label}

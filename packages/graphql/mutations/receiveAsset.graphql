@@ -1,0 +1,3 @@
+mutation receiveAsset($input: ReceiveAssetInput!) {
+  receiveAsset(input: $input)
+}
