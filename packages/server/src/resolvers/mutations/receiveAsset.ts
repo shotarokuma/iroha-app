@@ -1,5 +1,6 @@
 import { Role } from "../../../../graphql/server";
 import { auth } from "../../auth";
+import { transfer } from "../../logic/transferAsset";
 import bcrypt from "bcryptjs";
 import * as dotenv from "dotenv";
 import { pool } from "../../db";
@@ -25,6 +26,16 @@ export const receiveAsset = async (
 
     for (const row of res.rows) {
       if (await bcrypt.compare(password.toString(), row.password)) {
+        await transfer(
+          process.env.ADMIN_ID,
+          account,
+          row.amount,
+          process.env.ADMIN_PRIVATE_KEY,
+          row.asset
+        );
+        await pool.query(`
+          DELETE FROM receive_asset WHERE password = '${row.password}';
+        `);
         return true;
       }
     }
