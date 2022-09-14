@@ -12,15 +12,23 @@ export const receiveAsset = async (
 ): Promise<boolean> => {
   if (!auth(context.role, Role.User)) throw Error("Authorization fails");
   const { account, password } = args.input;
-  const encryptedPassword = await bcrypt.hash(password.toString(), 10);
 
   try {
     const res = await pool.query(`
     SELECT *
     FROM receive_asset 
-    WHERE password = '${encryptedPassword}' AND account = '${account}' 
+    WHERE account = '${account}' 
   `);
-    return true;
+    if (res.rows.length === 0) {
+      throw Error("there is no asset you can receive");
+    }
+
+    for (const row of res.rows) {
+      if (await bcrypt.compare(password.toString(), row.password)) {
+        return true;
+      }
+    }
+    throw Error("invalid password");
   } catch (err) {
     console.log(err);
     return err;
