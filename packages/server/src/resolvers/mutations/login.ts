@@ -1,12 +1,10 @@
-import { auth } from "../../auth";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
 import { pool } from "../../db";
 dotenv.config();
 
-export const login = async (_parent, args, context): Promise<string> => {
-  if (!auth(context.role)) throw Error("Authorization fails");
+export const login = async (_parent, args): Promise<string> => {
   const { account, password, role } = args.input;
   try {
     const res = await pool.query(`

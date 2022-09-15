@@ -4,6 +4,7 @@ import {
 } from "../../../graphql/client";
 import React from "react";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useUser } from "../../hooks/user";
 import Typography from "@mui/material/Typography";
@@ -15,6 +16,7 @@ import Loading from "../../components/Loading";
 import Header from "../../components/Header";
 
 const Page: NextPage = () => {
+  const router = useRouter();
   const { handleSubmit, control } = useForm<ReceiveAssetInput>();
   const [receiveAsset, { loading: receiveAssetLoading }] =
     useReceiveAssetMutation();
@@ -34,6 +36,7 @@ const Page: NextPage = () => {
             },
           },
         });
+        await router.push("/?asset=true");
       } catch (err) {
         alert(err);
       }

@@ -1,5 +1,5 @@
 import { QueryResolvers } from "../../../../graphql/server";
-import { getAsset } from "./admin/getAsset";
+import { getAsset } from "./getAsset";
 
 export const Query: QueryResolvers = {
   getAsset,
