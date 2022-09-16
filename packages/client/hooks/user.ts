@@ -28,12 +28,12 @@ export const useUser = (): useUserReturnProps => {
       root: handleMovePages("/"),
     },
     {
-      name: "Receive Asset",
+      name: "Receive asset",
       root: handleMovePages("/receive"),
     },
     {
-      name: "Create Asset",
-      root: handleMovePages("/admin/asset"),
+      name: "Exchange to real asset",
+      root: handleMovePages("/exchange"),
     },
   ];
 
