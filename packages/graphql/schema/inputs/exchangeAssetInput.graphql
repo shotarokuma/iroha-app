@@ -1,6 +1,6 @@
 input ExchangeAssetInput {
   account: String!
   asset: String!
-  name: String!
+  item: String!
   price: String!
 }
