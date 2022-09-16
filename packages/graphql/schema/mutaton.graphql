@@ -5,4 +5,5 @@ type Mutation {
   login(input: LoginInput!): String
   sendingAsset(input: SendingAssetInput!): Boolean
   receiveAsset(input: ReceiveAssetInput!): Boolean
+  exchangeAsset(input: ExchangeAssetInput!): Boolean
 }

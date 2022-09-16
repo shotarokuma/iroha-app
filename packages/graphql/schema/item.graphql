@@ -1,0 +1,4 @@
+type Item {
+  name: String!
+  price: String!
+}

@@ -1,0 +1,6 @@
+input ExchangeAssetInput {
+  account: String!
+  asset: String!
+  name: String!
+  price: String!
+}

@@ -1,0 +1,3 @@
+mutation exchangeAsset($input: ExchangeAssetInput!) {
+  exchangeAsset(input: $input)
+}
