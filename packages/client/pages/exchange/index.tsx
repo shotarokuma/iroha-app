@@ -107,6 +107,7 @@ const Page: NextPage = () => {
           },
         },
       });
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       alert(`you got a ${selectedItem.item}`);
       await root.push("/?asset=true");
     } catch (err) {
