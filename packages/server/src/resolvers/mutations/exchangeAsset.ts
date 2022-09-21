@@ -14,28 +14,20 @@ export const exchangeAsset = async (
   const { account, asset, item, price } = args.input;
   try {
     const data = await pool.query(`
-      SELECT publicKey FROM iroha_user
-      WHERE account = '${account}';
+      SELECT privateKey FROM cryptography
+      WHERE publicKey = (SELECT publicKey FROM iroha_user
+      WHERE account = '${account}');
     `);
 
     if (data.rows.length === 0) {
-      throw Error("Authorization fails");
-    }
-
-    const keyData = await pool.query(`
-      SELECT privateKey FROM cryptography
-      WHERE publicKey = '${data.rows[0]}';
-    `);
-
-    if (keyData.rows.length === 0) {
-      throw Error("Authorization fails");
+      throw Error("There are no any keys related your account");
     }
 
     await transfer(
       account,
       process.env.ADMIN_ID,
       price,
-      keyData.rows[0],
+      data.rows[0].privatekey,
       asset
     );
     console.log(`${item} is purchased`);
