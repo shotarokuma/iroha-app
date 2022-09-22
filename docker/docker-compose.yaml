@@ -10,6 +10,7 @@ services:
     build: 
       context: ../
     volumes:
+      - ../node_modules:/app/node_modules
       - ../packages/client/node_modules:/app/packages/client/node_modules
       - ../packages/graphql/node_modules:/app/packages/graphql/node_modules
       - ../packages/server/node_modules:/app/packages/server/node_modules
