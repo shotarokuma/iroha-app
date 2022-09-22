@@ -5,6 +5,7 @@
   "scripts": {
     "start": "npx ts-node index.ts",
     "dev": "npx ts-node-dev index.ts",
+    "build": "tsc",
     "lint:typecheck": "tsc -p . --noEmit",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier . --check",
