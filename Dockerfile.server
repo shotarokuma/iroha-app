@@ -7,7 +7,6 @@ RUN yarn graphql install
 
 RUN yarn graphql generate \
 && yarn graphql build \
-&& yarn server build \
-&& yarn client build
+&& yarn server build
 
-CMD ["bash", "./startup.sh"]
+CMD ["yarn", "server", "start"]

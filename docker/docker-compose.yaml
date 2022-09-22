@@ -1,40 +1,53 @@
 version: '3.5'
 
 networks:
-  iroha-react-network:
-    name: iroha-react-network
+  iroha-network:
+    name: iroha-network
     attachable: true
 
 services:
-  iroha-app:
+  iroha-client:
     build: 
       context: ../
+      dockerfile: Dockerfile.client
     volumes:
       - ../node_modules:/app/node_modules
       - ../packages/client/node_modules:/app/packages/client/node_modules
       - ../packages/graphql/node_modules:/app/packages/graphql/node_modules
-      - ../packages/server/node_modules:/app/packages/server/node_modules
+    ports:
+      - 3000:3000
     
-  iroha-react:
+  iroha-server:
+    build: 
+      context: ../
+      dockerfile: Dockerfile.server
+    volumes:
+      - ../node_modules:/app/node_modules
+      - ../packages/server/node_modules:/app/packages/server/node_modules
+      - ../packages/graphql/node_modules:/app/packages/graphql/node_modules
+    ports:
+      - 4000:4000
+
+  iroha:
     image: hyperledger/iroha:latest
-    container_name: iroha-react
+    container_name: iroha
     depends_on:
-      - iroha-react-postgres
+      - iroha-postgres
     tty: true
     environment:
       - KEY=keys/node0
     entrypoint:
       - /opt/iroha_data/entrypoint.sh
     networks:
-      - iroha-react-network
+      - iroha-network
     volumes:
       - ./iroha:/opt/iroha_data
     ports:
       - 50051:50051
 
-  iroha-react-postgres:
+  iroha-postgres:
     image: postgres:latest
-    container_name: iroha-react-postgres
+    container_name: iroha-postgres
     environment: 
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=mysecretpassword
@@ -44,4 +57,4 @@ services:
     volumes:
       - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
     networks:
-      - iroha-react-network
+      - iroha-network
