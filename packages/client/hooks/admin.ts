@@ -35,6 +35,10 @@ export const useAdmin = (): useAdminReturnProps => {
       name: "Create Asset",
       root: handleMovePages("/admin/asset"),
     },
+    {
+      name: "Transaction Histroy",
+      root: handleMovePages("/admin/history"),
+    },
   ];
 
   return {

@@ -1,3 +1,4 @@
 type Query {
   getAsset(input: GetAssetInput!): [Asset]!
+  getTransaction: [Transaction]!
 }

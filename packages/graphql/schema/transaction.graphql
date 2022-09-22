@@ -1,0 +1,4 @@
+type Transaction {
+  created: String!
+  command: String!
+}
