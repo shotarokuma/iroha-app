@@ -1,12 +1,15 @@
 FROM node:14.17.0-alpine
 
 WORKDIR /app
-COPY . .
+COPY package.json ./
+COPY yarn.lock ./
+COPY packages/client ./packages/client
+COPY packages/graphql ./packages/graphql
 RUN yarn install
 RUN yarn graphql install
 
 RUN yarn graphql generate \
-&& yarn graphql build \
+&& yarn graphql build:esm \
 && yarn client build
 
 CMD ["yarn", "client", "start"]
