@@ -34,7 +34,7 @@ services:
       dockerfile: Dockerfile.client
     container_name: iroha-client
     environment:
-      - SERVER_PORT=${SERVER_PORT}
+      - NEXT_PUBLIC_SERVER_PORT=${NEXT_PUBLIC_SERVER_PORT}
     depends_on:
       - iroha-server
     ports:
