@@ -9,7 +9,7 @@ RUN yarn install
 RUN yarn graphql install
 
 RUN { \
-    echo "SERVER_PORT=${SERVER_PORT}"; \
+    echo "NEXT_PUBLIC_SERVER_PORT=${NEXT_PUBLIC_SERVER_PORT}"; \
   } > ./packages/client/.env
 
 RUN yarn graphql generate \
