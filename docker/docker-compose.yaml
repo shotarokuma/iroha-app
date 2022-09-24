@@ -22,6 +22,7 @@ services:
       - ADMIN_PRIVATE_KEY=${ADMIN_PRIVATE_KEY}
       - TOKEN_KEY=${TOKEN_KEY}
       - POSTGRES_HOST=${POSTGRES_HOST}
+      - IROHA_PORT=${IROHA_PORT}
     depends_on:
       - iroha-postgres
     ports:
@@ -33,7 +34,7 @@ services:
       dockerfile: Dockerfile.client
     container_name: iroha-client
     environment:
-      - SERVER_HOST=${SERVER_HOST}
+      - SERVER_PORT=${SERVER_PORT}
     depends_on:
       - iroha-server
     ports:
