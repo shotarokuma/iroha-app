@@ -4,7 +4,7 @@ this project is coupon app using iroha api, which is sytsem of block chain by so
 ```
 yarn install
 ```
-### Run iroha server & db 
+### Run app
 ``` 
 docker-compose -f docker/docker-compose.yaml up 
 ```
