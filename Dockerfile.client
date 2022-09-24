@@ -8,6 +8,10 @@ COPY packages/graphql ./packages/graphql
 RUN yarn install
 RUN yarn graphql install
 
+RUN { \
+    echo "SERVER_PORT=${SERVER_PORT}"; \
+  } > ./packages/client/.env
+
 RUN yarn graphql generate \
 && yarn graphql build:esm \
 && yarn client build
