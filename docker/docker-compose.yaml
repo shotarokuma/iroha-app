@@ -31,10 +31,10 @@ services:
   iroha-client:
     build: 
       context: ../
+      args:
+        - NEXT_PUBLIC_SERVER_PORT=${NEXT_PUBLIC_SERVER_PORT}
       dockerfile: Dockerfile.client
     container_name: iroha-client
-    environment:
-      - NEXT_PUBLIC_SERVER_PORT=${NEXT_PUBLIC_SERVER_PORT}
     depends_on:
       - iroha-server
     ports:
