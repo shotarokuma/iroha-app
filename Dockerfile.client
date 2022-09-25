@@ -8,6 +8,8 @@ COPY packages/graphql ./packages/graphql
 RUN yarn install
 RUN yarn graphql install
 
+ARG NEXT_PUBLIC_SERVER_PORT
+
 RUN { \
     echo "NEXT_PUBLIC_SERVER_PORT=${NEXT_PUBLIC_SERVER_PORT}"; \
   } > ./packages/client/.env
