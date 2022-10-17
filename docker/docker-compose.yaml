@@ -25,6 +25,7 @@ services:
       - IROHA_PORT=${IROHA_PORT}
     depends_on:
       - iroha-postgres
+      - iroha
     ports:
       - 4000:4000
     
