@@ -6,7 +6,7 @@ you can create your bitcoin in admin page, then receive the money in user page t
 
 [user page](https://myiroha.com/)
 - admin page: admin@japan / 1234
-- user page: test@japan / 1234
+- user page: skumagai@japan / 5959
 ### Install dependency
 ```
 yarn install
